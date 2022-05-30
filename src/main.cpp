@@ -6,8 +6,10 @@
 int main() {
     Graph g(0);
     LoadData data(g);
-    data.loadNetwork(11);
+    data.loadNetwork(1);
     Graph network = data.getNetwork();
-    network.maxCapacity(1, 40);
+    network.maxCapacity(1, 3);
+    cout << "------------" << endl;
+    network.BFS(1, 3);
     return 15;
 }
