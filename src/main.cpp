@@ -1,11 +1,13 @@
 #include "Graph.h"
 #include "LoadData.h"
+#include "Q1_1.h"
 #include <iostream>
 
 int main() {
     Graph g(0);
     LoadData data(g);
-    data.loadNetwork(1);
+    data.loadNetwork(11);
     Graph network = data.getNetwork();
-    return 0;
+    network.maxCapacity(1, 7);
+    return 15;
 }

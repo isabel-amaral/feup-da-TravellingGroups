@@ -5,10 +5,12 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 class Graph {
+public:
     struct Edge {
         int dest;     // Destination node
         int capacity; // An integer capacity
@@ -16,17 +18,18 @@ class Graph {
     };
 
     struct Node {
-        list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
+        vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
+        int pred;
+        int capacity;
     };
+    // Constructor: nr nodes and direction (default: undirected)
+    explicit Graph(int nodes);
+    // Add edge from source to destination with a certain weight
+    void addEdge(int src, int dest, int capacity, int duration);
+    int maxCapacity(int source, int goal);
 
     int n;              // Graph size (vertices are numbered from 1 to n)
     vector<Node> nodes; // The list of nodes being represented
-
-public:
-    // Constructor: nr nodes and direction (default: undirected)
-    Graph(int nodes);
-    // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int capcity, int duration);
 };
 
 #endif

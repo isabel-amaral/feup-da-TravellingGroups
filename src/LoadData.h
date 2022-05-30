@@ -6,12 +6,12 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+
 using namespace std;
 
 class LoadData {
 private:
     Graph transportNetwork;
-
 public:
     LoadData(Graph transportNetwork);
     bool loadNetwork(int fileID);
