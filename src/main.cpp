@@ -8,6 +8,6 @@ int main() {
     LoadData data(g);
     data.loadNetwork(11);
     Graph network = data.getNetwork();
-    network.maxCapacity(1, 7);
+    network.maxCapacity(1, 40);
     return 15;
 }

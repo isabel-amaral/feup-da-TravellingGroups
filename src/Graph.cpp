@@ -31,8 +31,7 @@ void changeCapacity(vector<pair<int,double>> &q, int node, double capacity) {
     }
 }
 
-int Graph::maxCapacity(int source, int goal) {
-    int capacity = INT_MIN;
+int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) sendo E nº de edges e V nº de vertices(nodes)
     vector<pair<int,double>> q = {};
     for (int i = 1; i <= nodes.size(); i++) {
         nodes[i].capacity = INT_MIN;
@@ -80,8 +79,8 @@ int Graph::maxCapacity(int source, int goal) {
             break;
         }
 
-
         for (Graph::Edge edge: nodes[u].adj) {
+
 
             int w = min(cap, edge.capacity);
             if (w > nodes[edge.dest].capacity) {
@@ -92,9 +91,13 @@ int Graph::maxCapacity(int source, int goal) {
         }
     }
 
+    int capacity = INT_MAX;
+
     int u = goal;
     vector<int> path;
+
     while (u != 0) {
+        capacity = min(nodes[u].capacity, capacity);
         path.push_back(u);
         u = nodes[u].pred;
     }
@@ -104,6 +107,8 @@ int Graph::maxCapacity(int source, int goal) {
     for (int i = 0; i < path.size(); i++) {
         cout << path[i] << endl;
     }
+
+    cout << "Capacity: " << capacity << endl;
 
     return capacity;
 }
