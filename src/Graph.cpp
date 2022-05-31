@@ -11,7 +11,7 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
     nodes[src].adj.push_back({dest, capacity, duration});
 }
 
-void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths, int n) {
+void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) {
     int earliest = dest;
     int numStopsTillEnd = 0;
     bool reunite = true;
@@ -27,5 +27,8 @@ void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths, int n)
         if (reunite)
             earliest = previousStop;
     }
-    cout << "The group may reunite at stop " << earliest << endl;
+    cout << "All elements of the group may reunite at stop " << earliest;
+    if (earliest == dest)
+        cout << " (only at the end)";
+    cout << endl;
 }

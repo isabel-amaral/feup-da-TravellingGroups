@@ -15,15 +15,15 @@ int main() {
     vector<int> v3 = {1,2,4,8,10,11,12};
     paths1.push_back(v1);
     paths1.push_back(v2);
-    network.reuniteGroup(1, 12, paths1, 2);
+    network.reuniteGroup(1, 12, paths1);
     paths1.push_back(v3);
-    network.reuniteGroup(1, 12, paths1, 2);
+    network.reuniteGroup(1, 12, paths1);
 
     vector<vector<int>> paths2;
     vector<int> v4 = {1,2,4,8,10,12};
     vector<int> v5 = {1,2,4,8,10,12};
     paths2.push_back(v4);
     paths2.push_back(v5);
-    network.reuniteGroup(1, 12, paths2, 2);
+    network.reuniteGroup(1, 12, paths2);
     return 0;
 }
