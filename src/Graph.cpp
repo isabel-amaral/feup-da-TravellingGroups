@@ -92,7 +92,8 @@ int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the num
         cout << path[i] << " -> ";                      //
     }                                                   //
 
-    cout << endl << capacity << " people fit in the bus." << endl;
+    cout << endl << "Numero de transbordos: " << path.size()-1 << endl;
+    cout << capacity << " people fit in the bus." << endl;
 
     return capacity;
 }
@@ -146,5 +147,32 @@ void Graph::BFS(int source, int goal) {
         else cout << path[i] << " -> ";
     }
 
-    cout << endl << capacity << " people fit in the bus." << endl;
+    cout << endl << "Numero de transbordos: " << path.size()-1 << endl;
+    cout << capacity << " people fit in the bus." << endl;
+}
+
+void Graph::DFS(int source, int goal) {
+    stack<int> stack1;
+
+    for (int i = 1; i <= nodes.size(); i++) {
+        nodes[i].visited = false;
+    }
+
+    for (int i = 1; i <= nodes.size(); i++) {
+        if (!nodes[i].visited) {
+            DFS_Visit(source, stack1);
+        }
+    }
+}
+
+void Graph::DFS_Visit(int node, stack<int> &stack1) {
+    nodes[node].visited = true;
+
+    for (auto edge : nodes[node].adj) {
+        int w = edge.dest;
+        if (!nodes[w].visited) {
+            DFS_Visit(w,stack1);
+        }
+    }
+    stack1.push(node);
 }

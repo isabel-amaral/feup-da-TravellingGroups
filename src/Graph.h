@@ -7,6 +7,7 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
+#include <stack>
 
 using namespace std;
 
@@ -30,6 +31,8 @@ public:
     void addEdge(int src, int dest, int capacity, int duration);
     int maxCapacity(int source, int goal);
     void BFS(int source, int goal);
+    void DFS(int source, int goal);
+    void DFS_Visit(int node, stack<int> &stack1);
 
     int n;              // Graph size (vertices are numbered from 1 to n)
     vector<Node> nodes; // The list of nodes being represented
