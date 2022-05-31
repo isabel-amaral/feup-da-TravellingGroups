@@ -3,7 +3,7 @@
 LoadData::LoadData(Graph transportNetwork) : transportNetwork(transportNetwork) {}
 
 bool LoadData::loadNetwork(int fileID) {
-    string  filename;
+    string filename;
     if (fileID < 10)
         filename = "in0" + to_string(fileID) + ".txt";
     else
@@ -20,7 +20,7 @@ bool LoadData::loadNetwork(int fileID) {
     }
 
     getline(f, line);
-    stringstream  s(line);
+    stringstream s(line);
     s >> aux;
     numNodes = stoi(aux);
     transportNetwork = Graph(numNodes);
