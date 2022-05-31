@@ -2,9 +2,10 @@
 #define _GRAPH_H_
 
 #include "MinHeap.h"
+#include <iostream>
+#include <algorithm>
 #include <vector>
 #include <list>
-#include <iostream>
 
 using namespace std;
 
@@ -27,6 +28,8 @@ public:
     Graph(int nodes);
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, int capcity, int duration);
+
+    void reuniteGroup(int source, int dest, vector<vector<int>> paths, int n);
 };
 
 #endif
