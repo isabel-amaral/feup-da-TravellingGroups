@@ -13,50 +13,39 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
 
 // "Update" vector with new capacity value for a given node
 void changeCapacity(vector<pair<int,double>> &q, int node, double capacity) {
-    bool found = false;
-    for (int i = 0; i < q.size(); i++) {
-        if (q[i].first == node) {
-            q[i].second = capacity;
-            found = true;
-        }
-    }
-    if (!found) {
-        q.push_back({node,capacity});
-    }
+    for (auto& i: q)
+        if (i.first == node)
+            i.second = capacity;
 }
 
-// Get the path and it's capacity from a source node to a destination node
-int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the number of edges and V the number of vertices(nodes)
+// Get the path with maximum capacity from a given source node to a destination node
+// O(E * log(V)) being E the number of edges and V the number of vertices(nodes)
+int Graph::maxCapacity(int src, int dest) {
     vector<pair<int,double>> q = {};
-    for (int i = 1; i <= nodes.size(); i++) {
+    for (int i = 1; i < nodes.size(); i++) {
         nodes[i].capacity = INT_MIN;
         q.push_back({i, INT_MIN});
     }
 
-    nodes[source].capacity = INT_MAX;
-    changeCapacity(q,source, INT_MAX);
-    nodes[source].pred = 0;
-
+    nodes[src].capacity = INT_MAX;
+    changeCapacity(q, src, INT_MAX);
+    nodes[src].pred = 0;
     while (!q.empty()) {
-
-        pair<int,double> temp = {0,0};
-
-        for (int i = 0;i < q.size(); i++) {
-            if (q[i].second > temp.second)
-                temp = q[i];
+        pair<int,double> maxCapacity = {INT_MIN, INT_MIN};
+        vector<pair<int, double>>::iterator it;
+        for (int i = 0; i < q.size(); i++) {
+            if (q[i].second > maxCapacity.second) {
+                maxCapacity = q[i];
+                it = q.begin()+i;
+            }
         }
-
-        int u = temp.first;
-        int cap = temp.second;
-
-        q.erase(q.begin());
-
-        if (cap == INT_MIN) {
+        int u = maxCapacity.first;
+        int cap = maxCapacity.second;
+        if (cap == INT_MIN)
             break;
-        }
+        q.erase(it);
 
-        for (Graph::Edge edge: nodes[u].adj) {
-
+        for (Edge edge: nodes[u].adj) {
             int w = min(cap, edge.capacity);
             int neighbour = edge.dest;
             if (w > nodes[neighbour].capacity) {
@@ -67,32 +56,29 @@ int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the num
         }
     }
 
-    int capacity = INT_MAX;                             //
-                                                        //
-    int u = goal;                                       //
-    vector<int> path;                                   //
-                                                        //
-    while (u != 0) {                                    //
-        capacity = min(nodes[u].capacity, capacity);    //
-        path.push_back(u);                              //
-        u = nodes[u].pred;                              //  This part of the code has complexity
-    }                                                   //
-                                                        //  O(V) where V is the number of vertices(nodes)
-    reverse(path.begin(), path.end());                  //
-                                                        //
-    cout << "The path with max capacity is: ";          //
-                                                        //
-    for (int i = 0; i < path.size(); i++) {             //
-        if (i == path.size()-1) {                       //
-            cout << path[i] << endl;                    //
-            break;                                      //
-        }                                               //
-        cout << path[i] << " -> ";                      //
-    }                                                   //
-
-    cout << endl << "Numero de transbordos: " << path.size()-1 << endl;
-    cout << capacity << " people fit in the bus." << endl;
-
+    int capacity = INT_MAX, u = dest;
+    vector<int> path;
+    // worst case (if path passes by every node): O(V) where V is the number of nodes/stops in the transport network
+    while (u != 0) {
+        capacity = min(nodes[u].capacity, capacity);
+        path.push_back(u);
+        u = nodes[u].pred;
+    }
+    reverse(path.begin(), path.end());
+    if (path.size() == 1) {
+        cout << "Nao ha caminho entre os dois pontos." << endl;
+        return 0;
+    }
+    cout << "O caminho de capacidade maxima e: ";
+    for (int i = 0; i < path.size(); i++) {
+        if (i == path.size()-1) {
+            cout << path[i] << endl;
+            break;
+        }
+        cout << path[i] << " -> ";
+    }
+    cout << "Numero de transbordos: " << path.size()-1 << endl;
+    cout << "A capacidade do percurso e de " << capacity << " pessoas." << endl;
     return capacity;
 }
 
