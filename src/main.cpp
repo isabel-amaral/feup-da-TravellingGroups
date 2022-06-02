@@ -1,6 +1,5 @@
 #include "Graph.h"
 #include "LoadData.h"
-#include "Q1_1.h"
 #include <iostream>
 
 int main() {
