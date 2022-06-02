@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <vector>
 #include <list>
+#include <queue>
 
 using namespace std;
 
@@ -18,6 +19,8 @@ class Graph {
 
     struct Node {
         list<Edge> adj; // The list of outgoing edges (to adjacent nodes)
+        bool visited;
+        int parent;
     };
 
     int n;              // Graph size (vertices are numbered from 1 to n)
@@ -33,6 +36,8 @@ public:
 
     void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
     void waitTime(int source, int reunite, vector<vector<int>> paths) const;
+    void bfsCapacity(const int& source, const int& destination);
+
 };
 
 #endif

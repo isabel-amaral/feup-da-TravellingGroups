@@ -75,3 +75,32 @@ void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
         cout << endl;
     }
 }
+
+void Graph::bfsCapacity(const int& source, const int& destination) {
+    queue<int> visited;
+
+    for (int i = 1; i < nodes.size(); i++){
+        nodes[i].visited = false;
+        nodes[i].parent = -1;
+    }
+
+    nodes[source].visited = true;
+    nodes[source].parent = 0;
+    visited.push(source);
+
+    while (!visited.empty()) {
+        int u = visited.front();
+        visited.pop();
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited && e.capacity > 0) { // new node
+                visited.push(w);
+                nodes[w].visited = true;
+                nodes[w].parent = u;
+            }
+
+            if (w == destination)
+                return;
+        }
+    }
+}
