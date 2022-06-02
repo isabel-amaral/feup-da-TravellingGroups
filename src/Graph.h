@@ -24,6 +24,8 @@ class Graph {
     vector<Node> nodes; // The list of nodes being represented
 
 public:
+    // Constructor: default
+    Graph();
     // Constructor: nr nodes and direction (default: undirected)
     Graph(int nodes);
     // Add edge from source to destination with a certain weight

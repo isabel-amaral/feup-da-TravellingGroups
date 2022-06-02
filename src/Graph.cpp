@@ -1,5 +1,9 @@
 #include "Graph.h"
 
+Graph::Graph() : n(0), nodes(1) {
+
+}
+
 // Constructor: nr nodes and direction (default: undirected)
 Graph::Graph(int num) : n(num), nodes(num+1) {
 }

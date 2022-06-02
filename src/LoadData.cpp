@@ -1,5 +1,7 @@
 #include "LoadData.h"
 
+LoadData::LoadData() {}
+
 LoadData::LoadData(Graph transportNetwork) : transportNetwork(transportNetwork) {}
 
 bool LoadData::loadNetwork(int fileID) {

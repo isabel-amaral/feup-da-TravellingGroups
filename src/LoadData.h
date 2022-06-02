@@ -13,6 +13,7 @@ private:
     Graph transportNetwork;
 
 public:
+    LoadData();
     LoadData(Graph transportNetwork);
     bool loadNetwork(int fileID);
     const Graph& getNetwork() const;
