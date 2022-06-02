@@ -11,14 +11,6 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
     nodes[src].adj.push_back({dest, capacity, duration});
 }
 
-// Sort vector of nodes by capacity in descending order
-bool sortDescendingCapacity(pair<int,double> node1, pair<int,double> node2) {
-    if (node1.second == node2.second) {
-        return node1.first < node2.first;
-    }
-    return node1.second > node2.second;
-}
-
 // "Update" vector with new capacity value for a given node
 void changeCapacity(vector<pair<int,double>> &q, int node, double capacity) {
     bool found = false;
@@ -46,10 +38,16 @@ int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the num
     nodes[source].pred = 0;
 
     while (!q.empty()) {
-        sort(q.begin(), q.end(), sortDescendingCapacity);
 
-        int u = q[0].first;
-        int cap = q[0].second;
+        pair<int,double> temp = {0,0};
+
+        for (int i = 0;i < q.size(); i++) {
+            if (q[i].second > temp.second)
+                temp = q[i];
+        }
+
+        int u = temp.first;
+        int cap = temp.second;
 
         q.erase(q.begin());
 
@@ -59,12 +57,12 @@ int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the num
 
         for (Graph::Edge edge: nodes[u].adj) {
 
-
             int w = min(cap, edge.capacity);
-            if (w > nodes[edge.dest].capacity) {
-                nodes[edge.dest].capacity = w;
-                nodes[edge.dest].pred = u;
-                changeCapacity(q, edge.dest, nodes[edge.dest].capacity);
+            int neighbour = edge.dest;
+            if (w > nodes[neighbour].capacity) {
+                nodes[neighbour].capacity = w;
+                nodes[neighbour].pred = u;
+                changeCapacity(q, neighbour, nodes[neighbour].capacity);
             }
         }
     }
@@ -99,7 +97,7 @@ int Graph::maxCapacity(int source, int goal) {  // O(E * log(V)) being E the num
 }
 
 //get shortest path from a source node to a destination node
-void Graph::BFS(int source, int goal) {
+void Graph::BFS(int source, int goal) { // TODO: complexity
     for (int v=1; v<=nodes.size(); v++) {
         nodes[v].visited = false;
     }
@@ -149,30 +147,4 @@ void Graph::BFS(int source, int goal) {
 
     cout << endl << "Numero de transbordos: " << path.size()-1 << endl;
     cout << capacity << " people fit in the bus." << endl;
-}
-
-void Graph::DFS(int source, int goal) {
-    stack<int> stack1;
-
-    for (int i = 1; i <= nodes.size(); i++) {
-        nodes[i].visited = false;
-    }
-
-    for (int i = 1; i <= nodes.size(); i++) {
-        if (!nodes[i].visited) {
-            DFS_Visit(source, stack1);
-        }
-    }
-}
-
-void Graph::DFS_Visit(int node, stack<int> &stack1) {
-    nodes[node].visited = true;
-
-    for (auto edge : nodes[node].adj) {
-        int w = edge.dest;
-        if (!nodes[w].visited) {
-            DFS_Visit(w,stack1);
-        }
-    }
-    stack1.push(node);
 }
