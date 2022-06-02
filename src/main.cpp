@@ -1,9 +1,7 @@
-#include "Graph.h"
-#include "LoadData.h"
-#include <iostream>
+#include "Menu.h"
 
 int main() {
-    Graph g(0);
+/*  Graph g(0);
     LoadData data(g);
     data.loadNetwork(12);
     Graph network = data.getNetwork();
@@ -27,6 +25,8 @@ int main() {
     vector<int> v5 = {1,2,4,8,10,12};
     paths2.push_back(v4);
     paths2.push_back(v5);
-    network.reuniteGroup(1, 12, paths2);
+    network.reuniteGroup(1, 12, paths2);*/
+
+    Menu();
     return 0;
 }
