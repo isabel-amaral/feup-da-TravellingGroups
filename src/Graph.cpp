@@ -12,7 +12,7 @@ void Graph::addEdge(int src, int dest, int capacity, int duration) {
 }
 
 // "Update" vector with new capacity value for a given node
-void changeCapacity(vector<pair<int,double>> &q, int node, double capacity) {
+void Graph::changeCapacity(vector<pair<int,int>> &q, int node, int capacity) const {
     for (auto& i: q)
         if (i.first == node)
             i.second = capacity;
@@ -21,7 +21,7 @@ void changeCapacity(vector<pair<int,double>> &q, int node, double capacity) {
 // Get the path with maximum capacity from a given source node to a destination node
 // O(E * log(V)) being E the number of edges and V the number of vertices(nodes)
 void Graph::maxCapacity(int src, int dest) {
-    vector<pair<int,double>> q = {};
+    vector<pair<int, int>> q = {};
     for (int i = 1; i < nodes.size(); i++) {
         nodes[i].capacity = INT_MIN;
         q.push_back({i, INT_MIN});
@@ -32,8 +32,8 @@ void Graph::maxCapacity(int src, int dest) {
     changeCapacity(q, src, INT_MAX);
     nodes[src].prev = 0;
     while (!q.empty()) {
-        pair<int,double> maxCapacity = {INT_MIN, INT_MIN};
-        vector<pair<int, double>>::iterator it;
+        pair<int, int> maxCapacity = {INT_MIN, INT_MIN};
+        vector<pair<int, int>>::iterator it;
         for (int i = 0; i < q.size(); i++) {
             if (q[i].second > maxCapacity.second) {
                 maxCapacity = q[i];

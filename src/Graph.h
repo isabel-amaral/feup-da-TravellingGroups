@@ -29,6 +29,7 @@ public:
     explicit Graph(int nodes);
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, int capacity, int duration);
+    void changeCapacity(vector<pair<int,int>> &q, int node, int capacity) const;
     void maxCapacity(int src, int dest);
     void minTranshipments(int src, int dest);
 
