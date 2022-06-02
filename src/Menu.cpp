@@ -8,7 +8,7 @@ Menu::Menu() {
 }
 
 void Menu::menu0() {
-    cout << "Insira o número do ficheiro com a rede de transporte a considerar: (0 - Sair)" << endl;
+    cout << "Insira o numero do ficheiro com a rede de transporte a considerar: (0 - Sair)" << endl;
 
     int fileInt;
     bool validOption;
@@ -18,7 +18,7 @@ void Menu::menu0() {
         cin >> fileInt;
         if (cin.fail()) {
             validOption = false;
-            cout << "Opção inválida! Tente novamente" << endl;
+            cout << "Opçao invalida! Tente novamente" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }
@@ -27,7 +27,8 @@ void Menu::menu0() {
     if (fileInt == 0)
         return;
     else {
-        loadData.loadNetwork(fileInt);
+        if (!loadData.loadNetwork(fileInt))
+            return;
         network = loadData.getNetwork();
     }
 
@@ -46,10 +47,10 @@ void Menu::menu0() {
 }
 
 void Menu::menu1() {
-    cout << "Grupos que não se separam" << endl;
+    cout << "Grupos que nao se separam" << endl;
     cout << "Pretende saber:" << endl;
-    cout << "3 - A dimensão máxima do grupo com que pode viajar" << endl; // 1.1
-    cout << "4 - Comparação entre maximização do tamanho do grupo e minimização do número de transbordos" << endl; // 1.2
+    cout << "3 - A dimensão maxima do grupo com que pode viajar" << endl; // 1.1
+    cout << "4 - Comparaçao entre maximizaçao do tamanho do grupo e minimizaçao do numero de transbordos" << endl; // 1.2
     cout << "0 - Voltar ao menu anterior" << endl;
     readOption(3, 4);
 
@@ -64,8 +65,8 @@ void Menu::menu1() {
 void Menu::menu2() {
     cout << "Grupos que se podem separar" << endl;
     cout << "Pretende saber:" << endl;
-    cout << "5 - A dimensão máxima do grupo com que pode viajar" << endl; // 2.3
-    cout << "6 - Um possível encaminhamento para o seu grupo" << endl; // 2.1
+    cout << "5 - A dimensao maxima do grupo com que pode viajar" << endl; // 2.3
+    cout << "6 - Um possivel encaminhamento para o seu grupo" << endl; // 2.1
     cout << "0 - Voltar ao menu anterior" << endl;
     readOption(5, 6);
 
@@ -101,7 +102,7 @@ void Menu::readOption(int minOption, int maxOption) {
         cin >> option;
         if (cin.fail() || ((option < minOption || option > maxOption) && option != 0)) {
             validOption = false;
-            cout << "Opção inválida! Tente novamente" << endl;
+            cout << "Opçao invalida! Tente novamente" << endl;
             cin.clear();
             cin.ignore(INT_MAX, '\n');
         }

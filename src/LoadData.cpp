@@ -17,7 +17,7 @@ bool LoadData::loadNetwork(int fileID) {
 
     f.open(filename);
     if (!f.is_open()) {
-        cout << "File does not exist." << endl;
+        cout << "O ficheiro nao exite." << endl;
         return false;
     }
 

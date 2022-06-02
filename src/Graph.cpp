@@ -31,9 +31,9 @@ void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const 
         if (reunite)
             earliest = previousStop;
     }
-    cout << "All elements of the group may reunite at stop " << earliest;
+    cout << "Todos os elementos do grupo podem-se reunir na paragem " << earliest;
     if (earliest == dest)
-        cout << " (only at the end)";
+        cout << " (apenas no fim do percurso)";
     cout << endl;
 }
 
@@ -66,12 +66,12 @@ void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
             lastGroup = i;
         }
     }
-    cout << "All groups must wait for group " << lastGroup+1 << endl;
+    cout << "Todos devem esperar pelo grupo " << lastGroup+1 << endl;
     for (int i = 0; i < travelTime.size(); i++) {
         int waitTime = latestArrivingTime - travelTime[i];
-        cout << "Group " << i+1 << " will wait for " << waitTime << " minutes";
+        cout << "O grupo " << i+1 << " vai esperar durante " << waitTime << " minutos";
         if (waitTime == 0)
-            cout << " (will be the last group to arrive)";
+            cout << " (vai ser o ultimo a chegar)";
         cout << endl;
     }
 }
