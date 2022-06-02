@@ -9,7 +9,11 @@ int main() {
     data.loadNetwork(12);
     Graph network = data.getNetwork();
     network.maxCapacity(1, 12);
-//    cout << "------------" << endl;
-//    network.BFS(1, 4);
+    cout << "------------" << endl;
+    network.minTranshipments(1, 12);
+    cout << "------------" << endl;
+    network.maxCapacity(10, 4);
+    cout << "------------" << endl;
+    network.minTranshipments(10, 4);
     return 0;
 }

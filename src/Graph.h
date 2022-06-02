@@ -21,7 +21,7 @@ public:
 
     struct Node {
         vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
-        int pred;
+        int prev;
         int capacity;
         bool visited = false;
     };
@@ -29,8 +29,8 @@ public:
     explicit Graph(int nodes);
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, int capacity, int duration);
-    int maxCapacity(int src, int dest);
-    void BFS(int src, int dest);
+    void maxCapacity(int src, int dest);
+    void minTranshipments(int src, int dest);
 
     int n;              // Graph size (vertices are numbered from 1 to n)
     vector<Node> nodes; // The list of nodes being represented
