@@ -42,6 +42,35 @@ int main() {
     paths2.push_back(v5);
     network.reuniteGroup(1, 12, paths2); */
 
+
+/*  testing 2.1/ 2.2*/
+/*
+    Graph g(0);
+    LoadData data(g);
+    data.loadNetwork(14);
+    Graph network = data.getNetwork();
+
+    Graph residualNetwork;
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(5, 1, 21,network);    //maxFlow =21
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 24,network);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 30,network);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 24,network, 10);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 21,network, 10);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 42,network, 10);
+    */
+
     Menu();
     return 0;
 }

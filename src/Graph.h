@@ -16,6 +16,7 @@ public:
     struct Edge {
         int dest;     // Destination node
         int capacity; // An integer capacity
+        int flow = 0;
         int duration; // An integer duration
     };
 
@@ -42,8 +43,16 @@ public:
 
     void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
     void waitTime(int source, int reunite, vector<vector<int>> paths) const;
-    void bfsCapacity(const int& source, const int& destination);
 
+    bool bfsCapacity(const int& source, const int& target);
+    int getMaxCapacity(vector<int> path);
+    int getMaxFlow(int source, int destination, Graph &network);
+    void increaseRevCapacity (int start, int end, int capacity);
+    vector<int> getPath (const int& source, const int& destination, int& maxCapacity);
+    void getAllPaths (int source, int target, vector<pair<vector<int>,int>> &result);
+    static bool comparePaths(pair<vector<int>,int> a, pair<vector<int>,int> b);
+    void printPath(vector<int> path);
+    void separateGroup(int src, int target, int dimension, Graph& network, int extra = 0);
 };
 
 #endif
