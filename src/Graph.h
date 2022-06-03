@@ -45,14 +45,14 @@ public:
     void waitTime(int source, int reunite, vector<vector<int>> paths) const;
 
     bool bfsCapacity(const int& source, const int& target);
-    int getMaxCapacity(vector<int> path);
-    int getMaxFlow(int source, int destination, Graph &network);
-    void increaseRevCapacity (int start, int end, int capacity);
+    int getMaxCapacity(const vector<int> &path);
+    int getMaxFlow(const int &source, const int &destination, Graph &network);
+    void increaseRevCapacity (const int &start, const int &end, const int &capacity);
     vector<int> getPath (const int& source, const int& destination, int& maxCapacity);
-    void getAllPaths (int source, int target, vector<pair<vector<int>,int>> &result);
-    static bool comparePaths(pair<vector<int>,int> a, pair<vector<int>,int> b);
-    void printPath(vector<int> path);
-    void separateGroup(int src, int target, int dimension, Graph& network, int extra = 0);
+    void getAllPaths (const int &source, const int &target, vector<pair<vector<int>,int>> &result);
+    static bool comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b);
+    static void printPath(const vector<int> &path);
+    void separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra = 0);
 };
 
 #endif

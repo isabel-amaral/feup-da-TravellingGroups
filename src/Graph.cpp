@@ -243,7 +243,7 @@ vector<int> Graph::getPath(const int &source, const int &destination, int& maxCa
         return path;
 }
 
-int Graph::getMaxFlow(int source, int destination, Graph &network) {
+int Graph::getMaxFlow(const int &source, const int &destination, Graph &network) {
     int criticalEdge;
     int maxFlow = 0;
     vector <int> path;
@@ -277,7 +277,7 @@ int Graph::getMaxFlow(int source, int destination, Graph &network) {
     return maxFlow;
 }
 
-void Graph::increaseRevCapacity(int start, int end, int capacity) {
+void Graph::increaseRevCapacity(const int &start, const int &end, const int &capacity) {
     for (auto e: nodes[end].adj) {
         if (e.dest == start) {
             e.capacity += capacity;
@@ -287,7 +287,7 @@ void Graph::increaseRevCapacity(int start, int end, int capacity) {
     addEdge(end, start, capacity, 0);
 }
 
-void Graph::getAllPaths(int source, int target, vector<pair<vector<int>,int>> &result) {
+void Graph::getAllPaths(const int &source, const int &target, vector<pair<vector<int>,int>> &result) {
     queue<vector<int>> paths;
     vector<int> currentPath;
 
@@ -315,7 +315,7 @@ void Graph::getAllPaths(int source, int target, vector<pair<vector<int>,int>> &r
     sort(result.begin(), result.end(), comparePaths);
 }
 
-int Graph::getMaxCapacity( vector<int> path) {
+int Graph::getMaxCapacity(const vector<int> &path) {
     int maxCapacity = INT_MAX;
 
     for (int i=0; i<path.size()-1; i++) {
@@ -330,11 +330,11 @@ int Graph::getMaxCapacity( vector<int> path) {
     return maxCapacity;
 }
 
-bool Graph::comparePaths(pair<vector<int>,int> a, pair<vector<int>,int> b) {
+bool Graph::comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b) {
     return a.second > b.second;
 }
 
-void Graph::separateGroup(int src, int target, int dimension, Graph &network, int extra)  {
+void Graph::separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra)  {
     int maxFlow, maxCapacity, subGroupDimension, countGroups = 0;
     vector< pair<vector<int>,int> >  paths;
 
@@ -384,7 +384,7 @@ void Graph::separateGroup(int src, int target, int dimension, Graph &network, in
     }
 }
 
-void Graph::printPath(vector<int> path) {
+void Graph::printPath(const vector<int> &path) {
     cout << path[0];
     for (int i=1; i<path.size(); i++)
         cout << " -> " << path[i];
