@@ -2,6 +2,7 @@
 #define _GRAPH_H_
 
 #include "MinHeap.h"
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -17,6 +18,7 @@ public:
         int dest;     // Destination node
         int capacity; // An integer capacity
         int duration; // An integer duration
+        int flow;     // flow passing through an edge
     };
 
     struct Node {
@@ -36,11 +38,20 @@ public:
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, int capcity, int duration);
 
+    // 1.1-------------------------------------------------------------------------------------
     void changeCapacity(vector<pair<int,int>> &q, int node, int capacity) const;
     void maxCapacity(int src, int dest);
+    // 1.2-------------------------------------------------------------------------------------
     void minTranshipments(int src, int dest);
 
+    // 2.3-------------------------------------------------------------------------------------
+    void initializeResidualNetwork(vector<Node>& residualNetwork) const;
+    vector<int> findResidualNetworkPath(int src, int dest, vector<Node>& residualNetwork) const;
+    int getMaxFlow(int src, int dest);
+
+    // 2.4-------------------------------------------------------------------------------------
     void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
+    // 2.5-------------------------------------------------------------------------------------
     void waitTime(int source, int reunite, vector<vector<int>> paths) const;
 };
 

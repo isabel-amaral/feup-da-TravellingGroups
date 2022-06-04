@@ -15,6 +15,19 @@ int main() {
     cout << "------------" << endl;
     network.minTranshipments(10, 4); */
 
+/*  testing 2.3
+    Graph g1;
+    LoadData data1(g1);
+    data1.loadNetwork(14);
+    g1 = data1.getNetwork();
+    cout << g1.getMaxFlow(1, 6) << endl;
+
+    Graph g2;
+    LoadData data2(g2);
+    data2.loadNetwork(15);
+    g2 = data2.getNetwork();
+    cout << g2.getMaxFlow(1, 6) << endl; */
+
 /*  testing 2.4/2.5
     Graph g(0);
     LoadData data(g);
