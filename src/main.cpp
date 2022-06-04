@@ -53,23 +53,44 @@ int main() {
     Graph residualNetwork;
 
     residualNetwork = network;
-    residualNetwork.separateGroup(5, 1, 21,network);    //maxFlow =21
+    residualNetwork.separateGroup(1, 5, 18,network);    //maxFlow =21
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 21,network);
 
     residualNetwork = network;
     residualNetwork.separateGroup(1, 5, 24,network);
 
     residualNetwork = network;
-    residualNetwork.separateGroup(1, 5, 30,network);
+    residualNetwork.separateGroup(1, 5, 12,network, 3);
 
     residualNetwork = network;
-    residualNetwork.separateGroup(1, 5, 24,network, 10);
+    residualNetwork.separateGroup(1, 5, 18,network, 2);
 
     residualNetwork = network;
-    residualNetwork.separateGroup(1, 5, 21,network, 10);
+    residualNetwork.separateGroup(1, 5, 17,network, 3);
 
     residualNetwork = network;
-    residualNetwork.separateGroup(1, 5, 42,network, 10);
-    */
+    residualNetwork.separateGroup(1, 5, 9,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 1,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 22,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 21,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 20,network, 2);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 20,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 12,network, 15);*/
+
 
     Menu();
     return 0;
