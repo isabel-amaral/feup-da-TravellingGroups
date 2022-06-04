@@ -52,7 +52,7 @@ public:
     void getAllPaths (const int &source, const int &target, vector<pair<vector<int>,int>> &result);
     static bool comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b);
     static void printPath(const vector<int> &path);
-    void separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra = 0);
+    vector<vector<int>> separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra = 0);
 };
 
 #endif

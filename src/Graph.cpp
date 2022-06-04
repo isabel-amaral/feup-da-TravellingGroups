@@ -334,54 +334,72 @@ bool Graph::comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,
     return a.second > b.second;
 }
 
-void Graph::separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra)  {
-    int maxFlow, maxCapacity, subGroupDimension, countGroups = 0;
+vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra)  {
+    int maxFlow, maxCapacity, subGroupDimension, countGroups = 0, availableSeats;
     vector< pair<vector<int>,int> >  paths;
+    vector <vector<int>> usedPaths;
 
     maxFlow = getMaxFlow(src, target, network);
+    availableSeats = maxFlow;
     network.getAllPaths(src, target, paths);
 
     if (paths.empty()){
-        cout << "Nao ha caminho entre os dois pontos." << endl;
-        return;
+        cout << "\nNao ha caminho entre os dois pontos." << endl;
+        return usedPaths;
     }
 
-    cout << "Fluxo maximo= " << maxFlow << endl;
+    cout << "\nFluxo maximo= " << maxFlow << endl;
+    if (dimension > maxFlow || (dimension == maxFlow && extra > 0)) {
+        cout << "Apenas " << maxFlow << " pessoas podem ser transportadas."  << endl;
+        dimension = maxFlow;
+    }
     cout << "--------------------------------------------" << endl;
 
-    int i = 0;
+    int pathIndex = 0;
     while (dimension > 0) {
-        maxCapacity = paths[i].second;
+        maxCapacity = paths[pathIndex].second;
         subGroupDimension = min(dimension, maxCapacity);
         countGroups++;
 
         cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
-        printPath(paths[i].first);
+        printPath(paths[pathIndex].first);
 
-        i = (i+1)%paths.size();
         dimension -= subGroupDimension;
+        availableSeats -= subGroupDimension;
+        usedPaths.push_back(paths[pathIndex].first);
+        pathIndex++;
     }
 
-    if (extra > 0) {
-        cout << "Corrigido: " << endl;
+    if (availableSeats == 0 || extra == 0) return usedPaths;
 
-        if (dimension%maxFlow > 0) {    //if there is still space in the last subgroup
-            i = (i> 0) ? i -1 : paths.size()-1;
-            extra += subGroupDimension;
-            countGroups --;
-        }
-
-        while (extra > 0) {
-            subGroupDimension = min(extra, paths[i].second);
-            countGroups++;
-
-            cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
-            printPath(paths[i].first);
-
-            i = (i+1)%paths.size();
-            extra -= subGroupDimension;
-        }
+    if (extra > availableSeats) {
+        cout << "\nSo e possivel transportar mais " << availableSeats << " pessoas: " << endl;
+        extra = availableSeats;
     }
+
+
+    if (paths[pathIndex - 1].second > subGroupDimension) { //if there is still available space on the last used path
+        extra += subGroupDimension;
+        pathIndex--;
+        usedPaths.pop_back();
+    }
+    else countGroups++;
+
+    cout << "\nCorrigido: " << endl;
+
+    while (extra > 0) {
+        subGroupDimension = min(extra, paths[pathIndex].second);
+
+        cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
+        printPath(paths[pathIndex].first);
+
+        extra -= subGroupDimension;
+        usedPaths.push_back(paths[pathIndex].first);
+        pathIndex++;
+        countGroups++;
+    }
+
+    return usedPaths;
 }
 
 void Graph::printPath(const vector<int> &path) {
