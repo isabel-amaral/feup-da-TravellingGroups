@@ -13,27 +13,74 @@ using namespace std;
 class Graph {
 public:
     struct Edge {
-        int dest;     // Destination node
-        int capacity; // An integer capacity
-        int flow = 0; // flow passing through an edge
-        int duration; // An integer duration
+        /**
+         * Destination stop.
+         * */
+        int dest;
+        /**
+         * Maximum number of people that can be transported between two stops.
+         * */
+        int capacity;
+        /**
+         * Number of people being transported in a bus.
+         * */
+        int flow = 0;
+        /**
+         * Travel time between two stops.
+         * */
+        int duration;
     };
 
+    /**
+     * Each node represents a bus stop.
+     * */
     struct Node {
-        vector<Edge> adj; // The list of outgoing edges (to adjacent nodes)
+        /**
+         * The list of outgoing edges (to adjacent stops).
+         * */
+        vector<Edge> adj;
+        /**
+         * Auxiliary attribute of BFS algorithm:
+         * used to compute the path from a given source and destination.
+         * */
         int prev;
+        /**
+         * Auxiliary attribute of algorithm to find the path with max capacity: used to save the best
+         * capacity found up until a certain moment in a path that passes by this node.
+         */
         int capacity;
+        /**
+         * Auxiliary attribute of BFS algorithm.
+         * */
         bool visited = false;
     };
 
-    int n;              // Graph size (vertices are numbered from 1 to n)
-    vector<Node> nodes; // The list of nodes being represented
+    /**
+     * Network size.
+     * Stops are numbered from 1 to n.
+     * */
+    int n;
+    /**
+     * List of stops being represented.
+     */
+    vector<Node> nodes;
+
 public:
-    // Constructor: default
+    /**
+     * Constructor: default.
+     * */
     Graph();
-    // Constructor: nr nodes and direction (default: undirected)
+    /**
+     * Constructor: nr nodes and direction (default: undirected).
+     * */
     Graph(int nodes);
-    // Add edge from source to destination with a certain weight
+    /**
+     * Add an edge from a source stop to a destination stop.
+     * @param src is the source stop.
+     * @param dest is the destinations stop.
+     * @param capcity is the maximum number of people that can be transported.
+     * @param duration is the travel time between two stops.
+     * */
     void addEdge(int src, int dest, int capcity, int duration);
 
     // 1.1-------------------------------------------------------------------------------------
