@@ -73,24 +73,85 @@ $(function() {
   <div class="headertitle"><div class="title">Graph::Node Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_graph_8h_source.html">Graph.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a29a9084a20f8b45f57318f012ff25cad"><td class="memItemLeft" align="right" valign="top"><a id="a29a9084a20f8b45f57318f012ff25cad" name="a29a9084a20f8b45f57318f012ff25cad"></a>
-vector&lt; <a class="el" href="struct_graph_1_1_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>adj</b></td></tr>
+<tr class="memitem:a29a9084a20f8b45f57318f012ff25cad"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="struct_graph_1_1_edge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_node.html#a29a9084a20f8b45f57318f012ff25cad">adj</a></td></tr>
 <tr class="separator:a29a9084a20f8b45f57318f012ff25cad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7ac8cb6449c07fa4039e65d99ded6a42"><td class="memItemLeft" align="right" valign="top"><a id="a7ac8cb6449c07fa4039e65d99ded6a42" name="a7ac8cb6449c07fa4039e65d99ded6a42"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>prev</b></td></tr>
+<tr class="memitem:a7ac8cb6449c07fa4039e65d99ded6a42"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_node.html#a7ac8cb6449c07fa4039e65d99ded6a42">prev</a></td></tr>
 <tr class="separator:a7ac8cb6449c07fa4039e65d99ded6a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2446d7d493d129df278b16fbfb3f470c"><td class="memItemLeft" align="right" valign="top"><a id="a2446d7d493d129df278b16fbfb3f470c" name="a2446d7d493d129df278b16fbfb3f470c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>capacity</b></td></tr>
+<tr class="memitem:a2446d7d493d129df278b16fbfb3f470c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_node.html#a2446d7d493d129df278b16fbfb3f470c">capacity</a></td></tr>
 <tr class="separator:a2446d7d493d129df278b16fbfb3f470c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2360e752c746736f533bc4e673c1f80d"><td class="memItemLeft" align="right" valign="top"><a id="a2360e752c746736f533bc4e673c1f80d" name="a2360e752c746736f533bc4e673c1f80d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>visited</b> = false</td></tr>
+<tr class="memitem:a2360e752c746736f533bc4e673c1f80d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_graph_1_1_node.html#a2360e752c746736f533bc4e673c1f80d">visited</a> = false</td></tr>
 <tr class="separator:a2360e752c746736f533bc4e673c1f80d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Each node represents a bus stop. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a29a9084a20f8b45f57318f012ff25cad" name="a29a9084a20f8b45f57318f012ff25cad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29a9084a20f8b45f57318f012ff25cad">&#9670;&nbsp;</a></span>adj</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="struct_graph_1_1_edge.html">Edge</a>&gt; Graph::Node::adj</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >The list of outgoing edges (to adjacent stops). </p>
+
+</div>
+</div>
+<a id="a2446d7d493d129df278b16fbfb3f470c" name="a2446d7d493d129df278b16fbfb3f470c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2446d7d493d129df278b16fbfb3f470c">&#9670;&nbsp;</a></span>capacity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::Node::capacity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Auxiliary attribute of algorithm to find the path with max capacity: used to save the best capacity found up until a certain moment in a path that passes by this node. </p>
+
+</div>
+</div>
+<a id="a7ac8cb6449c07fa4039e65d99ded6a42" name="a7ac8cb6449c07fa4039e65d99ded6a42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ac8cb6449c07fa4039e65d99ded6a42">&#9670;&nbsp;</a></span>prev</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::Node::prev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Auxiliary attribute of BFS algorithm: used to compute the path from a given source and destination. </p>
+
+</div>
+</div>
+<a id="a2360e752c746736f533bc4e673c1f80d" name="a2360e752c746736f533bc4e673c1f80d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2360e752c746736f533bc4e673c1f80d">&#9670;&nbsp;</a></span>visited</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Graph::Node::visited = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Auxiliary attribute of BFS algorithm. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>C:/Users/isabe/OneDrive/Ambiente de Trabalho/FEUP/2_Ano/2_Semestre/DA/Projeto2/feup-da-TravellingGroups/src/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
+<li>C:/feup-da-TravellingGroups/src/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

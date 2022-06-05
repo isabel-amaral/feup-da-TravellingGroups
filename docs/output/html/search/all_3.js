@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['menu_0',['Menu',['../class_menu.html',1,'']]]
+  ['edge_0',['Edge',['../struct_graph_1_1_edge.html',1,'Graph']]]
 ];

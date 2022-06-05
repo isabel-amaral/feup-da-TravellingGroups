@@ -84,9 +84,25 @@ public:
     void addEdge(int src, int dest, int capcity, int duration);
 
     // 1.1-------------------------------------------------------------------------------------
+    /**
+     * Update the capacity of a certain node in a vector.
+     * @param q vector to update capacity.
+     * @param node number of node to update capacity value.
+     * @param capacity new capacity to insert in vector.
+     */
     void changeCapacity(vector<pair<int,int>> &q, int node, int capacity) const;
+    /**
+     * Related to Dijkstra algorithm, used to find the maximum capacity of a certain path.
+     * @param src is the source stop.
+     * @param dest is the destinations stop.
+     */
     void maxCapacity(int src, int dest);
     // 1.2-------------------------------------------------------------------------------------
+    /**
+     * BFS algorithm, used to determine shortest path from one node to another.
+     * @param src is the source stop.
+     * @param dest is the destinations stop.
+     */
     void minTranshipments(int src, int dest);
 
     // 2.1/2.2---------------------------------------------------------------------------------
