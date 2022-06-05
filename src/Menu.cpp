@@ -49,8 +49,8 @@ void Menu::menu0() {
 void Menu::menu1() {
     cout << "Grupos que nao se separam" << endl;
     cout << "Pretende saber:" << endl;
-    cout << "3 - A dimensão maxima do grupo com que pode viajar" << endl; // 1.1
-    cout << "4 - Comparaçao entre maximizaçao do tamanho do grupo e minimizaçao do numero de transbordos" << endl; // 1.2
+    cout << "3 - A dimensao maxima do grupo com que pode viajar" << endl; // 1.1
+    cout << "4 - O caminho com menor numero de transbordos" << endl; // 1.2
     cout << "0 - Voltar ao menu anterior" << endl;
     readOption(3, 4);
 
@@ -79,19 +79,119 @@ void Menu::menu2() {
 }
 
 void Menu::menu3() {
-    //TODO: call 1.1
+    int src, dest;
+    cout << "Indique a origem: " << endl; cin >> src;
+    cout << "Indique o destino: " << endl; cin >> dest;
+    cout << endl;
+    network.maxCapacity(src, dest);
+
+    cout << endl;
+    string aux;
+    cout << "Pressione qualquer tecla para voltar" << endl;
+    cin.ignore(INT_MAX, '\n');
+    getline(cin, aux);
+    option = lastMenu.top();
+    lastMenu.pop();
+    processOption();
 }
 
 void Menu::menu4() {
-    //TODO: call 1.2
+    int src, dest;
+    cout << "Indique a origem: " << endl; cin >> src;
+    cout << "Indique o destino: " << endl; cin >> dest;
+    cout << endl;
+    network.minTranshipments(src, dest);
+
+    cout << endl;
+    string aux;
+    cout << "Pressione qualquer tecla para voltar" << endl;
+    cin.ignore(INT_MAX, '\n');
+    getline(cin, aux);
+    option = lastMenu.top();
+    lastMenu.pop();
+    processOption();
 }
 
 void Menu::menu5() {
-    //TODO: call 2.3
+    int src, dest;
+    cout << "Indique a origem: " << endl; cin >> src;
+    cout << "Indique o destino: " << endl; cin >> dest;
+    cout << endl;
+    network.getMaxFlow(src, dest);
+
+    cout << endl;
+    string aux;
+    cout << "Pressione qualquer tecla para voltar" << endl;
+    cin.ignore(INT_MAX, '\n');
+    getline(cin, aux);
+    option = lastMenu.top();
+    lastMenu.pop();
+    processOption();
 }
 
 void Menu::menu6() {
-    //TODO: call 2.1
+    cout << "Indique a origem: " << endl; cin >> src;
+    cout << "Indique o destino: " << endl; cin >> dest;
+    cout << "Indique a dimensao do grupo: " << endl; cin >> dim;
+    cout << endl;
+    Graph residualNetwork = network;
+    paths = residualNetwork.separateGroup(src, dest, dim, network);
+
+    cout << endl;
+    cout << "7 - Pretende adicionar pessoas extra ao seu grupo?" << endl;
+    cout << "8 - Pretende saber em que paragem todos os elementos do grupo se poderao encontrar\n para depois viajarem juntos ate ao final?" << endl;
+    cout << "0 - Voltar ao menu anterior" << endl;
+    readOption(7, 8);
+
+    if (!option) {
+        option = lastMenu.top();
+        lastMenu.pop();
+    }
+    processOption();
+}
+
+void Menu::menu7() {
+    int extra;
+    cout << "Indique o numero de pessoas extra: " << endl; cin >> extra;
+    cout << endl;
+    Graph residualNetwork = network;
+    paths = residualNetwork.separateGroup(src, dest, dim, network, extra);
+
+    cout << endl;
+    string aux;
+    cout << "Pressione qualquer tecla para voltar" << endl;
+    cin.ignore(INT_MAX, '\n');
+    getline(cin, aux);
+    option = lastMenu.top();
+    lastMenu.pop();
+    processOption();
+}
+
+void Menu::menu8() {
+    network.reuniteGroup(src, dest, paths);
+
+    cout << endl;
+    cout << "9 - Pretende saber quanto tempos os restantes grupos terao de esperar pelo ultimo grupo a chegar?" << endl;
+    cout << "0 - Voltar ao menu anterior" << endl;
+    readOption(9, 9);
+    if (!option) {
+        option = lastMenu.top();
+        lastMenu.pop();
+    }
+    processOption();
+}
+
+void Menu::menu9() {
+    network.waitTime(src, reunite, paths);
+
+    cout << endl;
+    string aux;
+    cout << "Pressione qualquer tecla para voltar" << endl;
+    cin.ignore(INT_MAX, '\n');
+    getline(cin, aux);
+    option = lastMenu.top();
+    lastMenu.pop();
+    processOption();
 }
 
 void Menu::readOption(int minOption, int maxOption) {
@@ -118,5 +218,8 @@ void Menu::processOption() {
         case 4: menu4(); break;
         case 5: menu5(); break;
         case 6: menu6(); break;
+        case 7: menu7(); break;
+        case 8: menu8(); break;
+        case 9: menu9(); break;
     }
 }

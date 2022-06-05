@@ -11,6 +11,8 @@ using namespace std;
 class Menu {
     Graph network;
     LoadData loadData;
+    vector<vector<int>> paths;
+    int src, dest, dim, reunite;
 
     stack<int> lastMenu;
     int option;
@@ -27,6 +29,9 @@ public:
     void menu4();
     void menu5();
     void menu6();
+    void menu7();
+    void menu8();
+    void menu9();
 };
 
 #endif //FEUP_DA_TRAVELLINGGROUPS_MENU_H
