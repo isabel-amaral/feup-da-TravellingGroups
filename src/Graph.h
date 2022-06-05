@@ -15,9 +15,8 @@ public:
     struct Edge {
         int dest;     // Destination node
         int capacity; // An integer capacity
-        int flow = 0;
+        int flow = 0; // flow passing through an edge
         int duration; // An integer duration
-        int flow;     // flow passing through an edge
     };
 
     struct Node {
