@@ -15,6 +15,53 @@ int main() {
     cout << "------------" << endl;
     network.minTranshipments(10, 4); */
 
+/*  testing 2.1/ 2.2
+    Graph g(0);
+    LoadData data(g);
+    data.loadNetwork(16);
+    Graph network = data.getNetwork();
+
+    Graph residualNetwork;
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 18,network);    //maxFlow =21
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 21,network);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 24,network);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 12,network, 3);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 18,network, 2);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 17,network, 3);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 9,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 1,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 22,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 21,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 20,network, 2);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 20,network, 1);
+
+    residualNetwork = network;
+    residualNetwork.separateGroup(1, 5, 12,network, 15);*/
+
 /*  testing 2.3
     Graph g1;
     LoadData data1(g1);

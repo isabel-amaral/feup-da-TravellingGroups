@@ -283,3 +283,216 @@ void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
         cout << endl;
     }
 }
+
+bool Graph::bfsCapacity(const int &source, const int &target) {
+    queue<int> visited;
+
+    for (int i = 1; i < nodes.size(); i++){
+        nodes[i].visited = false;
+        nodes[i].prev = -1;
+    }
+
+    nodes[source].visited = true;
+    nodes[source].prev = 0;
+    nodes[source].capacity = INT_MAX;
+    visited.push(source);
+
+    while (!visited.empty()) {
+        int u = visited.front();
+        visited.pop();
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+
+            if (e.capacity <= 0)
+                continue;
+
+            if (!nodes[w].visited) { // new node
+                visited.push(w);
+                nodes[w].visited = true;
+                nodes[w].prev = u;
+                nodes[w].capacity = min(nodes[u].capacity, e.capacity);
+            }
+            if (w == target)  return true;
+        }
+    }
+    return false;
+}
+
+vector<int> Graph::getPath(const int &source, const int &destination, int& maxCapacity) {
+        maxCapacity = INT_MAX;
+        vector<int> path;
+        int node = destination;
+
+        do {
+            path.insert(path.begin(), node);
+            maxCapacity = min(maxCapacity, nodes[node].capacity);
+            node = nodes[node].prev;
+        } while (node != 0);
+        return path;
+}
+
+int Graph::getMaxFlow(const int &source, const int &destination, Graph &network) {
+    int criticalEdge;
+    int maxFlow = 0;
+    vector <int> path;
+
+    for (int i=1; i<nodes.size(); i++) {
+        nodes[i].capacity = 0;
+        for (int j=0; j<nodes[i].adj.size(); j++) {
+            network.nodes[i].adj[j].flow = 0;
+        }
+
+    }
+
+    while (bfsCapacity(source, destination)) {  //while there is a path from source to destination
+        path = getPath(source, destination, criticalEdge);
+
+        for (int i=0; i<path.size()-1; i++) {
+            int start = path[i];
+            int end = path[i+1];
+
+            for(int j=0; j<nodes[start].adj.size(); j++) {
+                if (nodes[start].adj[j].dest == end) {
+                    nodes[start].adj[j].capacity -= criticalEdge;
+                    increaseRevCapacity(start, end, criticalEdge);
+                    network.nodes[start].adj[j].flow += criticalEdge;
+                    break;
+                }
+            }
+        }
+        maxFlow += criticalEdge;
+    }
+    return maxFlow;
+}
+
+void Graph::increaseRevCapacity(const int &start, const int &end, const int &capacity) {
+    for (auto e: nodes[end].adj) {
+        if (e.dest == start) {
+            e.capacity += capacity;
+            return;
+        }
+    }
+    addEdge(end, start, capacity, 0);
+}
+
+void Graph::getAllPaths(const int &source, const int &target, vector<pair<vector<int>,int>> &result) {
+    queue<vector<int>> paths;
+    vector<int> currentPath;
+
+    currentPath.push_back(source);
+    paths.push(currentPath);
+
+    while (!paths.empty()) {
+        currentPath = paths.front();
+        paths.pop();
+        int last = currentPath.back();
+
+        if (last == target)
+            result.push_back(make_pair(currentPath, getMaxCapacity (currentPath)));
+
+        // traverse to all the nodes connected to
+        // current vertex and push new path to queue
+        for (auto e: nodes[last].adj) {
+            if (std::find(currentPath.begin(), currentPath.end(), e.dest) == currentPath.end() && e.flow > 0) {
+                vector<int> newpath = currentPath;
+                newpath.push_back(e.dest);
+                paths.push(newpath);
+            }
+        }
+    }
+    sort(result.begin(), result.end(), comparePaths);
+}
+
+int Graph::getMaxCapacity(const vector<int> &path) {
+    int maxCapacity = INT_MAX;
+
+    for (int i=0; i<path.size()-1; i++) {
+        int start = path[i];
+        int end = path[i+1];
+
+        for(auto e : nodes[start].adj) {
+            if (e.dest == end && e.flow < maxCapacity)
+                maxCapacity = e.flow;
+        }
+    }
+    return maxCapacity;
+}
+
+bool Graph::comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b) {
+    return a.second > b.second;
+}
+
+vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra)  {
+    int maxFlow, maxCapacity, subGroupDimension, countGroups = 0, availableSeats;
+    vector< pair<vector<int>,int> >  paths;
+    vector <vector<int>> usedPaths;
+
+    maxFlow = getMaxFlow(src, target, network);
+    availableSeats = maxFlow;
+    network.getAllPaths(src, target, paths);
+
+    if (paths.empty()){
+        cout << "\nNao ha caminho entre os dois pontos." << endl;
+        return usedPaths;
+    }
+
+    cout << "\nFluxo maximo= " << maxFlow << endl;
+    if (dimension > maxFlow || (dimension == maxFlow && extra > 0)) {
+        cout << "Apenas " << maxFlow << " pessoas podem ser transportadas."  << endl;
+        dimension = maxFlow;
+    }
+    cout << "--------------------------------------------" << endl;
+
+    int pathIndex = 0;
+    while (dimension > 0) {
+        maxCapacity = paths[pathIndex].second;
+        subGroupDimension = min(dimension, maxCapacity);
+        countGroups++;
+
+        cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
+        printPath(paths[pathIndex].first);
+
+        dimension -= subGroupDimension;
+        availableSeats -= subGroupDimension;
+        usedPaths.push_back(paths[pathIndex].first);
+        pathIndex++;
+    }
+
+    if (availableSeats == 0 || extra == 0) return usedPaths;
+
+    if (extra > availableSeats) {
+        cout << "\nSo e possivel transportar mais " << availableSeats << " pessoas: " << endl;
+        extra = availableSeats;
+    }
+
+
+    if (paths[pathIndex - 1].second > subGroupDimension) { //if there is still available space on the last used path
+        extra += subGroupDimension;
+        pathIndex--;
+        usedPaths.pop_back();
+    }
+    else countGroups++;
+
+    cout << "\nCorrigido: " << endl;
+
+    while (extra > 0) {
+        subGroupDimension = min(extra, paths[pathIndex].second);
+
+        cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
+        printPath(paths[pathIndex].first);
+
+        extra -= subGroupDimension;
+        usedPaths.push_back(paths[pathIndex].first);
+        pathIndex++;
+        countGroups++;
+    }
+
+    return usedPaths;
+}
+
+void Graph::printPath(const vector<int> &path) {
+    cout << path[0];
+    for (int i=1; i<path.size(); i++)
+        cout << " -> " << path[i];
+    cout << endl;
+}
