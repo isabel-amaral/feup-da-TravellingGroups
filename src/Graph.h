@@ -56,7 +56,7 @@ public:
     // 2.3-------------------------------------------------------------------------------------
     void initializeResidualNetwork(vector<Node>& residualNetwork) const;
     vector<int> findResidualNetworkPath(int src, int dest, vector<Node>& residualNetwork) const;
-    int getMaxFlow(int src, int dest);
+    void getMaxFlow(int src, int dest);
 
     // 2.4-------------------------------------------------------------------------------------
     void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;

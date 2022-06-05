@@ -67,13 +67,13 @@ int main() {
     LoadData data1(g1);
     data1.loadNetwork(14);
     g1 = data1.getNetwork();
-    cout << g1.getMaxFlow(1, 6) << endl;
+    g1.getMaxFlow(1, 6);
 
     Graph g2;
     LoadData data2(g2);
     data2.loadNetwork(15);
     g2 = data2.getNetwork();
-    cout << g2.getMaxFlow(1, 6) << endl; */
+    g2.getMaxFlow(1, 6); */
 
 /*  testing 2.4/2.5
     Graph g(0);

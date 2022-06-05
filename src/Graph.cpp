@@ -408,9 +408,9 @@ vector<int> Graph::findResidualNetworkPath(int src, int dest, vector<Node>& resi
 // 2.3------------------------------------
 // time complexity: O(E^2 * V), V being the number of nodes and E being the number of edges
 // space complexity: O(V), V being the number os nodes - space occupied by the residual graph
-int Graph::getMaxFlow(int src, int dest) {
+void Graph::getMaxFlow(int src, int dest) {
     for (int i = 1; i <= n; i++)
-        for (Edge e: nodes[i].adj)
+        for (Edge& e: nodes[i].adj)
             e.flow = 0;
     vector<Node> residualNetwork(n+1);
     initializeResidualNetwork(residualNetwork);
@@ -427,11 +427,9 @@ int Graph::getMaxFlow(int src, int dest) {
 
         for (int i = 0; i < path.size()-1; i++) {
             int s = path[i], d = path[i+1];
-            //int capacity;
             for (Edge& e: nodes[s].adj) {
                 if (e.dest == d) {
                     e.flow += minCapacity;
-                    //capacity = e.capacity;
                 }
             }
             for (Edge& e: residualNetwork[s].adj)
@@ -446,7 +444,7 @@ int Graph::getMaxFlow(int src, int dest) {
     int maxFlow = 0;
     for (Edge e: nodes[src].adj)
         maxFlow += e.flow;
-    return  maxFlow;
+    cout << "No maximo e possivel transportar um grupo de " << maxFlow << " pessoas." << endl;
 }
 
 // 2.4---------------------------------------------------------------------------
