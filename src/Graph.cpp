@@ -12,7 +12,7 @@ Graph::Graph(int num) : n(num), nodes(num+1) {
 void Graph::addEdge(int src, int dest, int capacity, int duration) {
     if (src<1 || src>n || dest<1 || dest>n)
         return;
-    nodes[src].adj.push_back({dest, capacity, duration, 0});
+    nodes[src].adj.push_back({dest, capacity, 0, duration});
 }
 
 // 1.1 helper-----------------------------------------------------------------------
@@ -450,7 +450,7 @@ void Graph::getMaxFlow(int src, int dest) {
 // 2.4---------------------------------------------------------------------------
 // time complexity: O(V), V being the number of nodes
 // space complexity: O(1)
-void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const {
+int Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const {
     int earliest = dest;
     int numStopsTillEnd = 0;
     bool reunite = true;
@@ -470,12 +470,13 @@ void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const 
     if (earliest == dest)
         cout << " (apenas no fim do percurso)";
     cout << endl;
+    return earliest;
 }
 
 // 2.5--------------------------------------------------------------------------
 // time complexity: O(P * E), P being the number of different groups (which are all taking one path) and E being the number of edges
 // space complexity: O(P)
-void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
+void Graph::waitTime(int source, int reunite, const vector<vector<int>>& paths) const {
     vector<int> travelTime;
     // O(P * E) in worst case
     for (vector<int> v: paths) { // O(P)

@@ -59,9 +59,9 @@ public:
     void getMaxFlow(int src, int dest);
 
     // 2.4-------------------------------------------------------------------------------------
-    void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
+    int reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
     // 2.5-------------------------------------------------------------------------------------
-    void waitTime(int source, int reunite, vector<vector<int>> paths) const;
+    void waitTime(int source, int reunite, const vector<vector<int>>& paths) const;
 };
 
 #endif
