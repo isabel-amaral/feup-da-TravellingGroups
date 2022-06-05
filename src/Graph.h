@@ -43,16 +43,7 @@ public:
     // 1.2-------------------------------------------------------------------------------------
     void minTranshipments(int src, int dest);
 
-    // 2.3-------------------------------------------------------------------------------------
-    void initializeResidualNetwork(vector<Node>& residualNetwork) const;
-    vector<int> findResidualNetworkPath(int src, int dest, vector<Node>& residualNetwork) const;
-    int getMaxFlow(int src, int dest);
-
-    // 2.4-------------------------------------------------------------------------------------
-    void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
-    // 2.5-------------------------------------------------------------------------------------
-    void waitTime(int source, int reunite, vector<vector<int>> paths) const;
-
+    // 2.1/2.2---------------------------------------------------------------------------------
     bool bfsCapacity(const int& source, const int& target);
     int getMaxCapacity(const vector<int> &path);
     int getMaxFlow(const int &source, const int &destination, Graph &network);
@@ -62,6 +53,16 @@ public:
     static bool comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b);
     static void printPath(const vector<int> &path);
     vector<vector<int>> separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra = 0);
+
+    // 2.3-------------------------------------------------------------------------------------
+    void initializeResidualNetwork(vector<Node>& residualNetwork) const;
+    vector<int> findResidualNetworkPath(int src, int dest, vector<Node>& residualNetwork) const;
+    int getMaxFlow(int src, int dest);
+
+    // 2.4-------------------------------------------------------------------------------------
+    void reuniteGroup(int source, int dest, vector<vector<int>> paths) const;
+    // 2.5-------------------------------------------------------------------------------------
+    void waitTime(int source, int reunite, vector<vector<int>> paths) const;
 };
 
 #endif
