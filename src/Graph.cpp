@@ -358,9 +358,10 @@ void Graph::printPath(const vector<int> &path) {
 }
 
 // 2.3 helper---------------------------------------------------------------
+// time complexity: O(V + E), V being the number of nodes and E being the number of edges
 void Graph::initializeResidualNetwork(vector<Node>& residualNetwork) const {
-    for (int i = 1; i <= n; i++) {
-        for (Edge e: nodes[i].adj) {
+    for (int i = 1; i <= n; i++) { // O(V) every node will be visited
+        for (Edge e: nodes[i].adj) { // O(E) after all iterations (after visiting every node, every edge was visited)
             residualNetwork[i].adj.push_back({e.dest, e.capacity, e.duration, e.flow});
             residualNetwork[e.dest].adj.push_back({i, 0, e.duration, e.flow});
         }
@@ -368,8 +369,9 @@ void Graph::initializeResidualNetwork(vector<Node>& residualNetwork) const {
 }
 
 // 2.3 helper----------------------------------------------------------------------------------------
+// time complexity: O(V + E), V being the number of nodes and E being the number of edges
 vector<int> Graph::findResidualNetworkPath(int src, int dest, vector<Node>& residualNetwork) const {
-    for (Node& n: residualNetwork) {
+    for (Node& n: residualNetwork) { // O(V), every node is initialized as unvisited and its prev being 0
         n.visited = false;
         n.prev = 0;
     }
@@ -378,10 +380,11 @@ vector<int> Graph::findResidualNetworkPath(int src, int dest, vector<Node>& resi
     q.push(src);
     residualNetwork[src].prev = 0;
     residualNetwork[src].visited = true;
-    while (!q.empty()) {
+    // O(V + E)
+    while (!q.empty()) { // O(V), every node must be visited
         int u = q.front();
         q.pop();
-        for (Edge e: residualNetwork[u].adj) {
+        for (Edge e: residualNetwork[u].adj) { // O(E) after all iterations (after visiting every node, every edge was visited)
             if (!residualNetwork[e.dest].visited && e.capacity != 0) {
                 q.push(e.dest);
                 residualNetwork[e.dest].prev = u;
@@ -392,15 +395,19 @@ vector<int> Graph::findResidualNetworkPath(int src, int dest, vector<Node>& resi
 
     vector<int> path;
     int currentNode = dest;
+    // O(V) in worst case (if the minimum path from src to dest passes by every node)
     while (currentNode != 0) {
         path.push_back(currentNode);
         currentNode = residualNetwork[currentNode].prev;
     }
+    // O(v)
     reverse(path.begin(), path.end());
     return path;
 }
 
 // 2.3------------------------------------
+// time complexity: O(E^2 * V), V being the number of nodes and E being the number of edges
+// space complexity: O(V), V being the number os nodes - space occupied by the residual graph
 int Graph::getMaxFlow(int src, int dest) {
     for (int i = 1; i <= n; i++)
         for (Edge e: nodes[i].adj)
@@ -443,11 +450,13 @@ int Graph::getMaxFlow(int src, int dest) {
 }
 
 // 2.4---------------------------------------------------------------------------
+// time complexity: O(V), V being the number of nodes
+// space complexity: O(1)
 void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const {
     int earliest = dest;
     int numStopsTillEnd = 0;
     bool reunite = true;
-    while (reunite && earliest != source) {
+    while (reunite && earliest != source) { // O(V) in worst case (is all the paths are the same and if the path passes by every node)
         numStopsTillEnd++;
         int previousStop = paths[0][paths[0].size()-1-numStopsTillEnd];
         for (vector<int> v: paths) {
@@ -466,15 +475,18 @@ void Graph::reuniteGroup(int source, int dest, vector<vector<int>> paths) const 
 }
 
 // 2.5--------------------------------------------------------------------------
+// time complexity: O(P * E), P being the number of different groups (which are all taking one path) and E being the number of edges
+// space complexity: O(P)
 void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
     vector<int> travelTime;
-    for (vector<int> v: paths) {
+    // O(P * E) in worst case
+    for (vector<int> v: paths) { // O(P)
         int time = 0;
         int stopIndex = 0;
         int stop = source;
         while (stop != reunite) {
             stopIndex++;
-            for (Edge e: nodes[stop].adj) {
+            for (Edge e: nodes[stop].adj) { //O(E) in worst case (if we need to analyze every edge)
                 if (e.dest == v[stopIndex]) {
                     time += e.duration;
                     break;
@@ -489,6 +501,7 @@ void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
     // all other groups must wait a certain amount of time
     int latestArrivingTime = INT_MIN;
     int lastGroup;
+    // O(P)
     for (int i = 0; i < travelTime.size(); i++) {
         if (travelTime[i] > latestArrivingTime) {
             latestArrivingTime = travelTime[i];
@@ -496,6 +509,7 @@ void Graph::waitTime(int source, int reunite, vector<vector<int>> paths) const {
         }
     }
     cout << "Todos devem esperar pelo grupo " << lastGroup + 1 << endl;
+    // O(P)
     for (int i = 0; i < travelTime.size(); i++) {
         int waitTime = latestArrivingTime - travelTime[i];
         cout << "O grupo " << i + 1 << " vai esperar durante " << waitTime << " minutos";
