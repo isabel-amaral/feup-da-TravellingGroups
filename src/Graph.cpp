@@ -297,14 +297,12 @@ vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int 
     }
 
     cout << "\nFluxo maximo= " << maxFlow << endl;
-    if (dimension > maxFlow || (dimension == maxFlow && extra > 0)) {
+    if (dimension > maxFlow || (dimension == maxFlow && extra > 0))
         cout << "Apenas " << maxFlow << " pessoas podem ser transportadas."  << endl;
-        dimension = maxFlow;
-    }
     cout << "--------------------------------------------" << endl;
 
     int pathIndex = 0;
-    while (dimension > 0) {
+    while (availableSeats > 0 && dimension > 0) {
         maxCapacity = paths[pathIndex].second;
         subGroupDimension = min(dimension, maxCapacity);
         countGroups++;
@@ -320,14 +318,13 @@ vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int 
 
     if (availableSeats == 0 || extra == 0)
         return usedPaths;
-    if (extra > availableSeats) {
-        cout << "\nSo e possivel transportar mais " << availableSeats << " pessoas: " << endl;
-        extra = availableSeats;
-    }
 
+    if (extra > availableSeats)
+        cout << "\nSo e possivel transportar mais " << availableSeats << " pessoa(s): " << endl;
 
     if (paths[pathIndex - 1].second > subGroupDimension) { //if there is still available space on the last used path
         extra += subGroupDimension;
+        availableSeats += subGroupDimension;
         pathIndex--;
         usedPaths.pop_back();
     }
@@ -335,13 +332,14 @@ vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int 
         countGroups++;
 
     cout << "\nCorrigido: " << endl;
-    while (extra > 0) {
+    while (availableSeats > 0 && extra > 0) {
         subGroupDimension = min(extra, paths[pathIndex].second);
 
-        cout << "Group" << countGroups << " (n=" << subGroupDimension << "): ";
+        cout << "Grupo" << countGroups << " (n=" << subGroupDimension << "): ";
         printPath(paths[pathIndex].first);
 
         extra -= subGroupDimension;
+        availableSeats -= subGroupDimension;
         usedPaths.push_back(paths[pathIndex].first);
         pathIndex++;
         countGroups++;
