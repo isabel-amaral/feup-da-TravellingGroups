@@ -66,6 +66,7 @@ $(function() {
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_graph-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Graph Class Reference</div></div>
@@ -81,14 +82,13 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a284b99bdb07994225dee3c2cdb59c80a"><td class="memItemLeft" align="right" valign="top"><a id="a284b99bdb07994225dee3c2cdb59c80a" name="a284b99bdb07994225dee3c2cdb59c80a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Graph</b> (int nodes)</td></tr>
+<tr class="memitem:ae4c72b8ac4d693c49800a4c7e273654f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#ae4c72b8ac4d693c49800a4c7e273654f">Graph</a> ()</td></tr>
+<tr class="separator:ae4c72b8ac4d693c49800a4c7e273654f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a284b99bdb07994225dee3c2cdb59c80a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a284b99bdb07994225dee3c2cdb59c80a">Graph</a> (int <a class="el" href="class_graph.html#a71b5e16eb9e0670fea3ecee3526abb41">nodes</a>)</td></tr>
 <tr class="separator:a284b99bdb07994225dee3c2cdb59c80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f3555b6db5f796787fb64331d172a03"><td class="memItemLeft" align="right" valign="top"><a id="a7f3555b6db5f796787fb64331d172a03" name="a7f3555b6db5f796787fb64331d172a03"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (int src, int dest, int capcity, int duration)</td></tr>
+<tr class="memitem:a7f3555b6db5f796787fb64331d172a03"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a7f3555b6db5f796787fb64331d172a03">addEdge</a> (int src, int dest, int capcity, int duration)</td></tr>
 <tr class="separator:a7f3555b6db5f796787fb64331d172a03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e88fd9acca448bb1cd31419a3e7c1c8"><td class="memItemLeft" align="right" valign="top"><a id="a4e88fd9acca448bb1cd31419a3e7c1c8" name="a4e88fd9acca448bb1cd31419a3e7c1c8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>changeCapacity</b> (vector&lt; pair&lt; int, int &gt; &gt; &amp;q, int node, int capacity) const</td></tr>
+<tr class="memitem:a4e88fd9acca448bb1cd31419a3e7c1c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a4e88fd9acca448bb1cd31419a3e7c1c8">changeCapacity</a> (vector&lt; pair&lt; int, int &gt; &gt; &amp;q, int node, int capacity) const</td></tr>
 <tr class="separator:a4e88fd9acca448bb1cd31419a3e7c1c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9c7aa963c5606b264196307481a37b1"><td class="memItemLeft" align="right" valign="top"><a id="af9c7aa963c5606b264196307481a37b1" name="af9c7aa963c5606b264196307481a37b1"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>maxCapacity</b> (int src, int dest)</td></tr>
@@ -96,31 +96,220 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>maxCapacity</b> (int 
 <tr class="memitem:a473e9c668e4756fc8a737c8b16e29fa7"><td class="memItemLeft" align="right" valign="top"><a id="a473e9c668e4756fc8a737c8b16e29fa7" name="a473e9c668e4756fc8a737c8b16e29fa7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>minTranshipments</b> (int src, int dest)</td></tr>
 <tr class="separator:a473e9c668e4756fc8a737c8b16e29fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a78379ceca39ea0a506fca06403f7e0"><td class="memItemLeft" align="right" valign="top"><a id="a0a78379ceca39ea0a506fca06403f7e0" name="a0a78379ceca39ea0a506fca06403f7e0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>bfsCapacity</b> (const int &amp;source, const int &amp;target)</td></tr>
+<tr class="separator:a0a78379ceca39ea0a506fca06403f7e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98db1fb95129833a1a572777edcd7ef8"><td class="memItemLeft" align="right" valign="top"><a id="a98db1fb95129833a1a572777edcd7ef8" name="a98db1fb95129833a1a572777edcd7ef8"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxCapacity</b> (const vector&lt; int &gt; &amp;path)</td></tr>
+<tr class="separator:a98db1fb95129833a1a572777edcd7ef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7bb3bcabb2ca62a98fc9834addf0c74"><td class="memItemLeft" align="right" valign="top"><a id="ab7bb3bcabb2ca62a98fc9834addf0c74" name="ab7bb3bcabb2ca62a98fc9834addf0c74"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxFlow</b> (const int &amp;source, const int &amp;destination, <a class="el" href="class_graph.html">Graph</a> &amp;network)</td></tr>
+<tr class="separator:ab7bb3bcabb2ca62a98fc9834addf0c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca6f661dda3b64742e23ea2036d988e5"><td class="memItemLeft" align="right" valign="top"><a id="aca6f661dda3b64742e23ea2036d988e5" name="aca6f661dda3b64742e23ea2036d988e5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>increaseRevCapacity</b> (const int &amp;start, const int &amp;end, const int &amp;capacity)</td></tr>
+<tr class="separator:aca6f661dda3b64742e23ea2036d988e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3beabf9cc3e7e5a62ffa70f6282f0ba7"><td class="memItemLeft" align="right" valign="top"><a id="a3beabf9cc3e7e5a62ffa70f6282f0ba7" name="a3beabf9cc3e7e5a62ffa70f6282f0ba7"></a>
+vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPath</b> (const int &amp;source, const int &amp;destination, int &amp;maxCapacity)</td></tr>
+<tr class="separator:a3beabf9cc3e7e5a62ffa70f6282f0ba7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7827b4bc053ebe9528c67f232ecd8a0a"><td class="memItemLeft" align="right" valign="top"><a id="a7827b4bc053ebe9528c67f232ecd8a0a" name="a7827b4bc053ebe9528c67f232ecd8a0a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>getAllPaths</b> (const int &amp;source, const int &amp;target, vector&lt; pair&lt; vector&lt; int &gt;, int &gt; &gt; &amp;result)</td></tr>
+<tr class="separator:a7827b4bc053ebe9528c67f232ecd8a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac442361cc88da48f68acfcc893224016"><td class="memItemLeft" align="right" valign="top"><a id="ac442361cc88da48f68acfcc893224016" name="ac442361cc88da48f68acfcc893224016"></a>
+vector&lt; vector&lt; int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>separateGroup</b> (const int &amp;src, const int &amp;target, int dimension, <a class="el" href="class_graph.html">Graph</a> &amp;network, int extra=0)</td></tr>
+<tr class="separator:ac442361cc88da48f68acfcc893224016"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac526563ef51138bbcbd1974879730824"><td class="memItemLeft" align="right" valign="top"><a id="ac526563ef51138bbcbd1974879730824" name="ac526563ef51138bbcbd1974879730824"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeResidualNetwork</b> (vector&lt; <a class="el" href="struct_graph_1_1_node.html">Node</a> &gt; &amp;residualNetwork) const</td></tr>
 <tr class="separator:ac526563ef51138bbcbd1974879730824"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f86a2520170a141d1d29380bbb8f19a"><td class="memItemLeft" align="right" valign="top"><a id="a3f86a2520170a141d1d29380bbb8f19a" name="a3f86a2520170a141d1d29380bbb8f19a"></a>
 vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>findResidualNetworkPath</b> (int src, int dest, vector&lt; <a class="el" href="struct_graph_1_1_node.html">Node</a> &gt; &amp;residualNetwork) const</td></tr>
 <tr class="separator:a3f86a2520170a141d1d29380bbb8f19a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0175e42b42dd16b34dee365f23c8e7bc"><td class="memItemLeft" align="right" valign="top"><a id="a0175e42b42dd16b34dee365f23c8e7bc" name="a0175e42b42dd16b34dee365f23c8e7bc"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxFlow</b> (int src, int dest)</td></tr>
-<tr class="separator:a0175e42b42dd16b34dee365f23c8e7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ba7a95072d2446e2d118e956b6a11f0"><td class="memItemLeft" align="right" valign="top"><a id="a8ba7a95072d2446e2d118e956b6a11f0" name="a8ba7a95072d2446e2d118e956b6a11f0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reuniteGroup</b> (int source, int dest, vector&lt; vector&lt; int &gt; &gt; paths) const</td></tr>
-<tr class="separator:a8ba7a95072d2446e2d118e956b6a11f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c71c125872e2f856b05d5042d5ada68"><td class="memItemLeft" align="right" valign="top"><a id="a1c71c125872e2f856b05d5042d5ada68" name="a1c71c125872e2f856b05d5042d5ada68"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>waitTime</b> (int source, int reunite, vector&lt; vector&lt; int &gt; &gt; paths) const</td></tr>
-<tr class="separator:a1c71c125872e2f856b05d5042d5ada68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03a2b0e1e03b04e60ea02d8835d741a7"><td class="memItemLeft" align="right" valign="top"><a id="a03a2b0e1e03b04e60ea02d8835d741a7" name="a03a2b0e1e03b04e60ea02d8835d741a7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxFlow</b> (int src, int dest)</td></tr>
+<tr class="separator:a03a2b0e1e03b04e60ea02d8835d741a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3a213478bb8fb42bc2dd72def192f0c"><td class="memItemLeft" align="right" valign="top"><a id="af3a213478bb8fb42bc2dd72def192f0c" name="af3a213478bb8fb42bc2dd72def192f0c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>reuniteGroup</b> (int source, int dest, vector&lt; vector&lt; int &gt; &gt; paths) const</td></tr>
+<tr class="separator:af3a213478bb8fb42bc2dd72def192f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad36b82a0e2c5fd6d9ca97d5be30802d4"><td class="memItemLeft" align="right" valign="top"><a id="ad36b82a0e2c5fd6d9ca97d5be30802d4" name="ad36b82a0e2c5fd6d9ca97d5be30802d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>waitTime</b> (int source, int reunite, const vector&lt; vector&lt; int &gt; &gt; &amp;paths) const</td></tr>
+<tr class="separator:ad36b82a0e2c5fd6d9ca97d5be30802d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a05fdb728a142e3b712929040ee1a275c"><td class="memItemLeft" align="right" valign="top"><a id="a05fdb728a142e3b712929040ee1a275c" name="a05fdb728a142e3b712929040ee1a275c"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><b>comparePaths</b> (const pair&lt; vector&lt; int &gt;, int &gt; &amp;a, const pair&lt; vector&lt; int &gt;, int &gt; &amp;b)</td></tr>
+<tr class="separator:a05fdb728a142e3b712929040ee1a275c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09a0b432e5040b25f5905fdd70f2805"><td class="memItemLeft" align="right" valign="top"><a id="ad09a0b432e5040b25f5905fdd70f2805" name="ad09a0b432e5040b25f5905fdd70f2805"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>printPath</b> (const vector&lt; int &gt; &amp;path)</td></tr>
+<tr class="separator:ad09a0b432e5040b25f5905fdd70f2805"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a81a76a428e630453ef019a15b9092967"><td class="memItemLeft" align="right" valign="top"><a id="a81a76a428e630453ef019a15b9092967" name="a81a76a428e630453ef019a15b9092967"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>n</b></td></tr>
+<tr class="memitem:a81a76a428e630453ef019a15b9092967"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a81a76a428e630453ef019a15b9092967">n</a></td></tr>
 <tr class="separator:a81a76a428e630453ef019a15b9092967"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b5e16eb9e0670fea3ecee3526abb41"><td class="memItemLeft" align="right" valign="top"><a id="a71b5e16eb9e0670fea3ecee3526abb41" name="a71b5e16eb9e0670fea3ecee3526abb41"></a>
-vector&lt; <a class="el" href="struct_graph_1_1_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>nodes</b></td></tr>
+<tr class="memitem:a71b5e16eb9e0670fea3ecee3526abb41"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="struct_graph_1_1_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_graph.html#a71b5e16eb9e0670fea3ecee3526abb41">nodes</a></td></tr>
 <tr class="separator:a71b5e16eb9e0670fea3ecee3526abb41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae4c72b8ac4d693c49800a4c7e273654f" name="ae4c72b8ac4d693c49800a4c7e273654f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4c72b8ac4d693c49800a4c7e273654f">&#9670;&nbsp;</a></span>Graph() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Graph::Graph </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Constructor: default. </p>
+
+</div>
+</div>
+<a id="a284b99bdb07994225dee3c2cdb59c80a" name="a284b99bdb07994225dee3c2cdb59c80a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a284b99bdb07994225dee3c2cdb59c80a">&#9670;&nbsp;</a></span>Graph() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Graph::Graph </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nodes</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Constructor: nr nodes and direction (default: undirected). </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a7f3555b6db5f796787fb64331d172a03" name="a7f3555b6db5f796787fb64331d172a03"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f3555b6db5f796787fb64331d172a03">&#9670;&nbsp;</a></span>addEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::addEdge </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>src</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capcity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duration</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Add an edge from a source stop to a destination stop. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src</td><td>is the source stop. </td></tr>
+    <tr><td class="paramname">dest</td><td>is the destinations stop. </td></tr>
+    <tr><td class="paramname">capcity</td><td>is the maximum number of people that can be transported. </td></tr>
+    <tr><td class="paramname">duration</td><td>is the travel time between two stops. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e88fd9acca448bb1cd31419a3e7c1c8" name="a4e88fd9acca448bb1cd31419a3e7c1c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e88fd9acca448bb1cd31419a3e7c1c8">&#9670;&nbsp;</a></span>changeCapacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::changeCapacity </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; pair&lt; int, int &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>q</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>node</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>capacity</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >skqodjedjejekelddoee, </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">q</td><td>deddddddd </td></tr>
+    <tr><td class="paramname">node</td><td></td></tr>
+    <tr><td class="paramname">capacity</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a81a76a428e630453ef019a15b9092967" name="a81a76a428e630453ef019a15b9092967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a76a428e630453ef019a15b9092967">&#9670;&nbsp;</a></span>n</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Graph::n</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Network size. Stops are numbered from 1 to n. </p>
+
+</div>
+</div>
+<a id="a71b5e16eb9e0670fea3ecee3526abb41" name="a71b5e16eb9e0670fea3ecee3526abb41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71b5e16eb9e0670fea3ecee3526abb41">&#9670;&nbsp;</a></span>nodes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt;<a class="el" href="struct_graph_1_1_node.html">Node</a>&gt; Graph::nodes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >List of stops being represented. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/isabe/OneDrive/Ambiente de Trabalho/FEUP/2_Ano/2_Semestre/DA/Projeto2/feup-da-TravellingGroups/src/<a class="el" href="_graph_8h_source.html">Graph.h</a></li>
 <li>C:/Users/isabe/OneDrive/Ambiente de Trabalho/FEUP/2_Ano/2_Semestre/DA/Projeto2/feup-da-TravellingGroups/src/Graph.cpp</li>

@@ -24,7 +24,6 @@ void Graph::changeCapacity(vector<pair<int,int>> &q, int node, int capacity) con
 }
 
 // 1.1--------------------------------------------------------------------------
-// O(E * log(V)) being E the number of edges and V the number of vertices(nodes)
 void Graph::maxCapacity(int src, int dest) {
     vector<pair<int, int>> q = {};
     for (int i = 1; i < nodes.size(); i++) {
