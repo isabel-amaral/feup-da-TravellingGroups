@@ -171,7 +171,7 @@ void Menu::menu8() {
     network.reuniteGroup(src, dest, paths);
 
     cout << endl;
-    cout << "9 - Pretende saber quanto tempos os restantes grupos terao de esperar pelo ultimo grupo a chegar?" << endl;
+    cout << "9 - Pretende saber quanto tempo os restantes grupos terao de esperar pelo ultimo grupo a chegar?" << endl;
     cout << "0 - Voltar ao menu anterior" << endl;
     readOption(9, 9);
     if (!option) {
