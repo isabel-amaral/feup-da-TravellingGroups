@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['changecapacity_0',['changeCapacity',['../class_graph.html#a4e88fd9acca448bb1cd31419a3e7c1c8',1,'Graph']]]
+  ['bfscapacity_0',['bfsCapacity',['../class_graph.html#a0a78379ceca39ea0a506fca06403f7e0',1,'Graph']]]
 ];
