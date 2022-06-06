@@ -137,6 +137,7 @@ void Graph::minTranshipments(int src, int dest) { // TODO: complexity
 }
 
 // 2.1/2.2 helper----------------------------------------------
+// time complexity: O(V + E), V being the number of nodes and E being the number of edges
 bool Graph::bfsCapacity(const int &source, const int &target) {
     queue<int> visited;
 
@@ -172,6 +173,7 @@ bool Graph::bfsCapacity(const int &source, const int &target) {
 }
 
 // 2.1/2.2 helper------------------------------------------------------------------------
+// time complexity: O(V), V being the number of nodes
 vector<int> Graph::getPath(const int &source, const int &destination, int& maxCapacity) {
     maxCapacity = INT_MAX;
     vector<int> path;
@@ -185,7 +187,8 @@ vector<int> Graph::getPath(const int &source, const int &destination, int& maxCa
     return path;
 }
 
-// 2.1/2.2------------------------------------------------------------------------
+// 2.1/2.2---------------------------------------------------------------------------------
+// time complexity: O(V * E^2), V being the number of nodes and E being the number of edges
 int Graph::getMaxFlow(const int &source, const int &destination, Graph &network) {
     int criticalEdge;
     int maxFlow = 0;
@@ -196,7 +199,6 @@ int Graph::getMaxFlow(const int &source, const int &destination, Graph &network)
         for (int j=0; j<nodes[i].adj.size(); j++) {
             network.nodes[i].adj[j].flow = 0;
         }
-
     }
 
     while (bfsCapacity(source, destination)) {  //while there is a path from source to destination
@@ -221,17 +223,19 @@ int Graph::getMaxFlow(const int &source, const int &destination, Graph &network)
 }
 
 // 2.1/2.2 helper-----------------------------------------------------------------------
-void Graph::increaseRevCapacity(const int &start, const int &end, const int &capacity) {
-    for (auto e: nodes[end].adj) {
-        if (e.dest == start) {
+// time complexity: O(E), E being the number of edges
+void Graph::increaseRevCapacity(const int &a, const int &b, const int &capacity) {
+    for (auto e: nodes[b].adj) {
+        if (e.dest == a) {
             e.capacity += capacity;
             return;
         }
     }
-    addEdge(end, start, capacity, 0);
+    addEdge(b, a, capacity, 0);
 }
 
 // 2.1/2.2 helper-------------------------------------------------------------------------------------
+// time complexity: O(V ^ V), V being the number of nodes
 void Graph::getAllPaths(const int &source, const int &target, vector<pair<vector<int>,int>> &result) {
     queue<vector<int>> paths;
     vector<int> currentPath;
@@ -245,7 +249,7 @@ void Graph::getAllPaths(const int &source, const int &target, vector<pair<vector
         int last = currentPath.back();
 
         if (last == target)
-            result.push_back(make_pair(currentPath, getMaxCapacity (currentPath)));
+            result.push_back(make_pair(currentPath, getPathMaxCapacity(currentPath)));
 
         // traverse to all the nodes connected to
         // current vertex and push new path to queue
@@ -261,7 +265,8 @@ void Graph::getAllPaths(const int &source, const int &target, vector<pair<vector
 }
 
 //2.1/2.2 helper------------------------------------
-int Graph::getMaxCapacity(const vector<int> &path) {
+// time complexity: O(V + E), V being the number of nodes and E being the number of edges
+int Graph::getPathMaxCapacity(const vector<int> &path) {
     int maxCapacity = INT_MAX;
 
     for (int i=0; i<path.size()-1; i++) {
@@ -277,19 +282,21 @@ int Graph::getMaxCapacity(const vector<int> &path) {
 }
 
 // 2.1/2.2 sorting function---------------------------------------------------------------
-bool Graph::comparePaths(const pair<vector<int>,int>& a, const pair<vector<int>,int>& b) {
-    return a.second > b.second;
+bool Graph::comparePaths(const pair<vector<int>,int>& p1, const pair<vector<int>,int>& p2) {
+    return p1.second > p2.second;
 }
 
 // 2.1/2.2--------------------------------------------------------------------------------------------------------------
+// time complexity: O(V ^ V), V being the number of nodes and E being the number of edges
+// space complexity: O (V ^ V), V being the number of nodes- space occupied by all paths from src to target
 vector<vector<int>> Graph::separateGroup(const int &src, const int &target, int dimension, Graph& network, int extra)  {
     int maxFlow, maxCapacity, subGroupDimension, countGroups = 0, availableSeats;
     vector< pair<vector<int>,int> >  paths;
     vector <vector<int>> usedPaths;
 
-    maxFlow = getMaxFlow(src, target, network);
+    maxFlow = getMaxFlow(src, target, network); // O (V * E^2)
     availableSeats = maxFlow;
-    network.getAllPaths(src, target, paths);
+    network.getAllPaths(src, target, paths);    // O (V^V)
 
     if (paths.empty()){
         cout << "\nNao ha caminho entre os dois pontos." << endl;
