@@ -1,4 +1,4 @@
-## DA_T12_G37 - Travelling Groups
+## DA_T12_G37 - Travelling Groups 
 
 > **2021/2022** - 2nd Year, 2nd Semester
 > 
